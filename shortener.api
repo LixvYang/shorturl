@@ -12,7 +12,7 @@ type ConvertResponse {
 }
 
 type ShowRequest {
-	ShortUrl string `json:"shortUrl" validate:"required"`
+	ShortUrl string `path:"shortUrl" validate:"required"`
 }
 
 type ShowResponse {
@@ -24,5 +24,5 @@ service shortener-api {
 	post /convert(ConvertRequset) returns (ConvertResponse)
 	
 	@handler ShowHandler
-	post /:shortUrl(ShowResponse) returns (ShowResponse)
+	get /:shortUrl(ShowRequest) returns (ShowResponse)
 }

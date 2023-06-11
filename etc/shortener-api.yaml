@@ -12,3 +12,7 @@ BaseString: J0rs12O5TUV8IW7D9aBdXeCfghiMQj3klmop6qtuvbcwx4zAEFGHKLNnPRYSZy
 ShortUrlBlackList: ["version", "fuck", "stupid", "convert", "health", "api", "js", "css", "html"]
 
 ShortDomain: betxin.one
+
+CacheRedis: 
+  - Host: 127.0.0.1:6379
+

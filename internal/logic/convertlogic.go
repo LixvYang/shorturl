@@ -85,10 +85,13 @@ func (l *ConvertLogic) Convert(req *types.ConvertRequset) (resp *types.ConvertRe
 		short = base62.Int2String(seq)
 		fmt.Printf("short:%v\n", short)
 		// 4. 存储长链接短链接映射关系
-
 		if _, ok := l.svcCtx.ShortUrlBlackList[short]; !ok {
 			break // 生成不在黑名单里的短链接就跳出for循环
 		}
+	}
+	//4.2 将生成的短链接加入布隆过滤器中
+	if err = l.svcCtx.Filter.Add([]byte(short)); err != nil {
+		logx.Errorw("Filter.Add failed", logx.LogField{Key: "err", Value: err.Error()})
 	}
 
 	// 5. 返回响应
